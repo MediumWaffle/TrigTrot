@@ -10,11 +10,28 @@
 
 #include "header.h"
 
+//main function headers
+void events(RenderWindow &window, Event &e);
+
 
 int main()
 {
+    RenderWindow window(VideoMode(512,512), "Trig Trot", Style::Default);
 
-
+    while (window.isOpen()){
+        Event e;
+        events(window, e);
+    }
 
     return 0;
+}
+
+
+//main function headers
+void events(RenderWindow &window, Event &e){
+    while(window.pollEvent(e)){
+        if (e.type == e.Closed){
+            window.close();
+        }
+    }
 }
