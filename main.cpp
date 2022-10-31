@@ -13,6 +13,7 @@
 //main function headers
 void events(RenderWindow &window, Event &e);
 
+
 int main()
 {
     RenderWindow window(VideoMode(512,512), "Trig Trot", Style::Default);
@@ -24,6 +25,7 @@ int main()
 
     return 0;
 }
+
 
 //main function headers
 void events(RenderWindow &window, Event &e){
