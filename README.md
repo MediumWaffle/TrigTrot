@@ -1,4 +1,4 @@
-# MalAarCal - Trig Trials
+# MalAarCal - Trig Trot
 
 Our project is to make an infinite size scrolling platformer.  
 This is a type of game where the main character, is on a 2D plane.  
