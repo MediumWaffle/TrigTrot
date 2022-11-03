@@ -10,7 +10,15 @@
 
 #ifndef HEADER_H
 #define HEADER_H
+
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include <iostream>
+#include <ctime>
 #include <string>
 #include <iomanip>
 #include <fstream>
