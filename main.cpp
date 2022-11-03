@@ -1,37 +1,36 @@
 /**
  * @file main.cpp
- * @GroupName MalAarCal
- * @GroupMembers Aaron Jarnes, Caleb Carter, Malik Robinson
+ * @ingroup MalAarCal
+ * @authors Aaron Jarnes, Caleb Carter, Malik Robinson
  * @brief Primary file for game loop
  * @date 10-24-2022
  */
-
-//DO NOT FORGET TO CHECK README.md FREQUENTLY!!! Important updates and notes should be made here!
-
 #include "header.h"
-
-//main function headers
-void events(RenderWindow &window, Event &e);
-
 
 int main()
 {
+    //initilize variables
     RenderWindow window(VideoMode(512,512), "Trig Trot", Style::Default);
+    View view(Vector2f(0.0f, 0.0f), Vector2f(512.0f, 512.0f));
+    CircleShape player(50.0f);
+    Event e;
 
+    //adjust initial variables
+    player.setOrigin(player.getRadius(), player.getRadius());
+    player.setPosition(window.getSize().x/2, window.getSize().y/2);
+    player.setFillColor(Color::Green);
+
+    //game loop
     while (window.isOpen()){
-        Event e;
+        //checks events
         events(window, e);
+        //adjust player's movement
+        playerMovement(player);
+        //set view focus point to player
+        view.setCenter(player.getPosition());
+        //render updates to window
+        update(window, view, player);
     }
 
     return 0;
-}
-
-
-//main function headers
-void events(RenderWindow &window, Event &e){
-    while(window.pollEvent(e)){
-        if (e.type == e.Closed){
-            window.close();
-        }
-    }
 }
