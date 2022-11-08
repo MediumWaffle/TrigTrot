@@ -6,30 +6,31 @@
  * @date 10-24-2022
  */
 #include "header.h"
+#include "Game.h"
 
 int main()
 {
     //initilize variables
-    RenderWindow window(VideoMode(512,512), "Trig Trot", Style::Default);
-    View view(Vector2f(0.0f, 0.0f), Vector2f(512.0f, 512.0f));
+    Game game(522, 522, "Trig Trot");
     CircleShape player(50.0f);
-    Event e;
+    Vector2f rectSize(174, 174);
+    RectangleShape platform1(rectSize);
+    RectangleShape platform2(rectSize);
+    RectangleShape platform3(rectSize);
 
     //adjust initial variables
     player.setOrigin(player.getRadius(), player.getRadius());
-    player.setPosition(window.getSize().x/2, window.getSize().y/2);
+    player.setPosition(game.getWindowSize("x"), game.getWindowSize("y"));
     player.setFillColor(Color::Green);
 
     //game loop
-    while (window.isOpen()){
+    while (game.isRunning()){
         //checks events
-        events(window, e);
+        game.events();
         //adjust player's movement
         playerMovement(player);
-        //set view focus point to player
-        view.setCenter(player.getPosition());
         //render updates to window
-        update(window, view, player);
+        game.update(player, platform1, platform2, platform3);
     }
 
     return 0;
