@@ -62,34 +62,6 @@ TODO:
 refreshDisplay(); importGraphics(); More TBD.
 */
 /**
- * @brief updates events happening to the window
- * @param window checks the events happening to window
- * @param e our event
- * @author Aaron Jarnes
- */
-void events(RenderWindow &window, Event &e){
-    while(window.pollEvent(e)){
-        if (e.type == e.Closed){
-            window.close();
-        }
-    }
-}
-
-/**
- * @brief updates the window with the objects
- * @param window checks the events happening to window
- * @param view the view inside our window
- * @param player the movable character
- * @author Aaron Jarnes
- */
-void update(RenderWindow &window, View &view, CircleShape &player){
-    window.clear();
-    window.setView(view);
-    window.draw(player);
-    window.display();
-}
-
-/**
  * @brief takes keybaord input and chnages the player position accordingly
  * @param player the object the user can control
  * @author Aaron Jarnes
