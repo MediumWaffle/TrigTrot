@@ -31,6 +31,19 @@ using namespace sf;
 
 //Classes
 
+class Objects
+{
+    public:
+   void makeFloor(int s);
+   void moveFloor(int s);
+   
+   int floor1, floor2, floor3;
+
+   RectangleShape one, two, three;
+
+
+};
+
 /* Ideas for classes(delete me)
     class display{}
     class gameData{}
