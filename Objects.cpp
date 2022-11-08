@@ -1,10 +1,5 @@
 #include "Objects.h"
 
-/*
-TODO: 
-refreshDisplay(); importGraphics(); More TBD.
-*/
-
 void Objects::makeFloor(int s)
 {
     one.setSize(sf::Vector2f(s, 50));
