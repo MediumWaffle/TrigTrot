@@ -7,6 +7,7 @@
  */
 #include "header.h"
 #include "Game.h"
+#include "Objects.h"
 
 int main()
 {
@@ -27,8 +28,6 @@ int main()
     while (game.isRunning()){
         //checks events
         game.events();
-        //adjust player's movement
-        playerMovement(player);
         //render updates to window
         game.update(player, platform1, platform2, platform3);
     }

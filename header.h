@@ -7,17 +7,10 @@
  */
 #ifndef HEADER_H
 #define HEADER_H
+
 #include <iostream>
 #include <string>
-#include <SFML/Graphics.hpp>
 
 using namespace sf;
 
-void events(RenderWindow &window, Event &e);
-void update(RenderWindow &window, View &view, CircleShape &player);
-void playerMovement(CircleShape &player);
-/* Ideas for classes(delete me)
-    class playerInfo{}
-    class enemyInfo{} / cpuInfo{}
-*/
 #endif
