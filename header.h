@@ -17,8 +17,6 @@ void events(RenderWindow &window, Event &e);
 void update(RenderWindow &window, View &view, CircleShape &player);
 void playerMovement(CircleShape &player);
 /* Ideas for classes(delete me)
-    class display{}
-    class gameData{}
     class playerInfo{}
     class enemyInfo{} / cpuInfo{}
 */
