@@ -6,7 +6,6 @@
  * @date 10-24-2022
  */
 #include "header.h"
-<<<<<<< HEAD
 #include "Game.h"
 
 int main()
@@ -32,31 +31,7 @@ int main()
         playerMovement(player);
         //render updates to window
         game.update(player, platform1, platform2, platform3);
-=======
-
-//main function headers
-void events(RenderWindow &window, Event &e);
-
-
-int main()
-{
-    RenderWindow window(VideoMode(512,512), "Trig Trot", Style::Default);
-
-    while (window.isOpen()){
-        Event e;
-        events(window, e);
->>>>>>> main
     }
 
     return 0;
-}
-
-
-//main function headers
-void events(RenderWindow &window, Event &e){
-    while(window.pollEvent(e)){
-        if (e.type == e.Closed){
-            window.close();
-        }
-    }
 }
