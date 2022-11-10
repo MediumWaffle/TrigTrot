@@ -23,6 +23,9 @@ int main()
     */
     RectangleShape obs;
     RectangleShape plat;
+    RectangleShape background;
+    background.setOrigin(0,0);
+    background.setSize(Vector2f(240,150));
    // CircleShape player;
 
     /*
@@ -42,6 +45,8 @@ int main()
     */
     Texture obst;
     Texture platt;
+    Texture back;
+    back.loadFromFile("cavewall.png");
     platt.loadFromFile("floatingPlatform.png");
     obst.loadFromFile("Spike-1.png");
     //obs.setFillColor(Color(0,0,0));
@@ -51,6 +56,7 @@ int main()
     plat.setSize(Vector2f(20,20));
     plat.setOrigin(x2, -100);
     plat.setTexture(&platt);
+    background.setTexture(&back);
    // int playerY = -130; 
    // int playerX = -40;
     /*
@@ -178,7 +184,7 @@ int main()
        
          player.jump(-70,10,10, x2, nojump);
         
-        
+        Window.draw(background);
         Window.draw(player.Player);
         obs.setOrigin(x, -130);
         Window.draw(obs);
@@ -190,6 +196,7 @@ int main()
         Window.draw(floor.three); 
         plat.setOrigin(x2,-100);
         Window.draw(plat);
+        
 
         Window.display();
         
