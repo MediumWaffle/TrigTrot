@@ -1,11 +1,4 @@
-/**
- * @file functions.cpp
- * @ingroup MalAarCal
- * @authors Aaron Jarnes, Caleb Carter, Malik Robinson
- * @brief Function list for game
- * @date 10-24-2022
- */
-#include "header.h"
+#include "Objects.h"
 
 void Objects::makeFloor(int s)
 {
@@ -55,26 +48,4 @@ void Objects::moveFloor(int s)
         floor2 += 10;
         floor3 += 10;
 
-}
-
-void Objects::jump(int height, int falls, int rises)
-{
-     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY < height)
-        {
-            playerY += rises;
-            player.setOrigin(playerX, playerY);
-
-        }
-        if(playerY > -130 and !Keyboard::isKeyPressed(Keyboard::Key::Space))
-        {
-            playerY -= falls;
-            player.setOrigin(playerX, playerY);
-        }
-}
-
-void Objects::makePlayer()
-{
-     player.setRadius(25/2);
-     player.setFillColor(Color(255,255,255));
-     player.setOrigin(playerX,playerY);
 }
