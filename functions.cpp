@@ -60,6 +60,30 @@ void Objects::moveFloor(int s)
 
 }
 
+void Objects::jump(int height, int falls, int rises)
+{
+     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY < height)
+        {
+            playerY += rises;
+            player.setOrigin(playerX, playerY);
+
+        }
+        if(playerY > -130 and !Keyboard::isKeyPressed(Keyboard::Key::Space))
+        {
+            playerY -= falls;
+            player.setOrigin(playerX, playerY);
+        }
+}
+
+void Objects::makePlayer()
+{
+     player.setRadius(25/2);
+     player.setFillColor(Color(255,255,255));
+     player.setOrigin(playerX,playerY);
+}
+
+
+
 /*
 TODO: 
 refreshDisplay(); importGraphics(); More TBD.

@@ -40,6 +40,14 @@ class Objects
    int floor1, floor2, floor3;
 
    RectangleShape one, two, three;
+   CircleShape player;
+
+    void makePlayer();
+   void jump(int height, int falls, int rises); 
+
+
+    int playerY = -130; 
+    int playerX = -40;
 
 
 };
@@ -50,6 +58,7 @@ class Objects
     class playerInfo{}
     class enemyInfo{} / cpuInfo{}
 */
+
 
 
 #endif
