@@ -9,12 +9,22 @@
 
 void Objects::makeFloor(int s)
 {
+     
+     text1.loadFromFile("floorNormal.png");
+     text2.loadFromFile("floorWater.png");
+     text3.loadFromFile("floorBones.png");
+
+ 
     one.setSize(sf::Vector2f(s, 50));
-    one.setFillColor(Color::Blue);
+    //one.setFillColor(Color::Blue);
+    one.setTexture(&text1);
     two.setSize(sf::Vector2f(s,50));
-    two.setFillColor(Color::Red);
+    //two.setFillColor(Color::Red);
+    two.setTexture(&text2);
     three.setSize(Vector2f(s,50));
-    three.setFillColor(Color::Green);
+    //three.setFillColor(Color::Green);
+    three.setTexture(&text3);
+
 
     floor1 = 0;
     floor2 = floor1-s;
@@ -57,24 +67,29 @@ void Objects::moveFloor(int s)
 
 }
 
-void Objects::jump(int height, int falls, int rises)
+void Objects::jump(int height, int falls, int rises, int plat)
 {
+     
      if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY < height)
         {
-            playerY += rises;
-            player.setOrigin(playerX, playerY);
-
+          
+               playerY += rises;
+               Player.setOrigin(playerX, playerY);
+          
         }
-        if(playerY > -130 and !Keyboard::isKeyPressed(Keyboard::Key::Space))
+        if((playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space)) or (playerY > height-20 and Keyboard::isKeyPressed(Keyboard::Key::Space)) )
         {
             playerY -= falls;
-            player.setOrigin(playerX, playerY);
+            Player.setOrigin(playerX, playerY);
         }
 }
 
 void Objects::makePlayer()
 {
-     player.setRadius(25/2);
-     player.setFillColor(Color(255,255,255));
-     player.setOrigin(playerX,playerY);
+     
+     ptext.loadFromFile("ghost.png");
+     Player.setRadius(25/2);
+     Player.setTexture(&ptext);
+     //player.setFillColor(Color(255,255,255));
+     Player.setOrigin(playerX,playerY);
 }

@@ -15,13 +15,14 @@ int main()
     
     RenderWindow Window(VideoMode(240,200), "Game",Style::Default);
     
-   
+  
     /*
     RectangleShape one;
     RectangleShape two;
     RectangleShape three;
     */
     RectangleShape obs;
+    RectangleShape plat;
    // CircleShape player;
 
     /*
@@ -39,9 +40,17 @@ int main()
     int floor2 = floor1-120;
     int floor3 = floor1-240;
     */
-    obs.setFillColor(Color(0,0,255));
+    Texture obst;
+    Texture platt;
+    platt.loadFromFile("floatingPlatform.png");
+    obst.loadFromFile("Spike-1.png");
+    //obs.setFillColor(Color(0,0,0));
     obs.setSize(Vector2f(20,20));
+    obs.setTexture(&obst);
     obs.setOrigin(x,-130);
+    plat.setSize(Vector2f(20,20));
+    plat.setOrigin(x2, -100);
+    plat.setTexture(&platt);
    // int playerY = -130; 
    // int playerX = -40;
     /*
@@ -60,8 +69,7 @@ int main()
     Objects player;
     player.makePlayer();
     floor.makeFloor(120);
-
-
+    bool start = false;
 
  
     while(Window.isOpen())
@@ -73,6 +81,34 @@ int main()
             {
                 Window.close();
             }
+        }
+
+        if(start == false)
+        {
+            while(start == false)
+                {
+                    while(Window.pollEvent(e))
+                    {
+                        if(e.type == e.Closed)
+                        {
+                            Window.close();
+                        }
+                    }
+                    RectangleShape Gameover;
+                    Gameover.setFillColor(Color::Blue);
+                    Gameover.setSize(Vector2f(240,200));
+                    Gameover.setOrigin(0,0);
+                    Window.clear();
+                    Window.draw(Gameover);
+                    Window.display();
+                    if(Keyboard::isKeyPressed(Keyboard::Key::Enter))
+                    {
+                        start = true;
+                    }
+                    
+
+                }
+
         }
         Window.clear();
 
@@ -128,11 +164,19 @@ int main()
            // Window.close();
         }
         */
+       if(Keyboard::isKeyPressed(Keyboard::Key::C))
+       {   
+             
+             player.ptext2.loadFromFile("psycho.png");
+             player.Player.setTexture(&player.ptext2);
+
+       }
        
-         player.jump(-70,10,10);
+       
+         player.jump(-70,10,10, x2);
         
         
-        Window.draw(player.player);
+        Window.draw(player.Player);
         obs.setOrigin(x, -130);
         Window.draw(obs);
 
@@ -141,8 +185,8 @@ int main()
         Window.draw(floor.one);
         Window.draw(floor.two);
         Window.draw(floor.three); 
-        obs.setOrigin(x2,-100);
-        Window.draw(obs);
+        plat.setOrigin(x2,-100);
+        Window.draw(plat);
 
         Window.display();
         
@@ -158,7 +202,7 @@ int main()
         floor3 += 10;
         */
         
-       if(player.playerX == x and player.playerY < -90)
+       if(player.playerX == x and player.playerY < -100)
        {
             while(!Keyboard::isKeyPressed(Keyboard::Key::S))
             {
@@ -175,38 +219,39 @@ int main()
                 Gameover.setOrigin(0,0);
                 Window.clear();
                 Window.draw(Gameover);
-                Window.display();
-                
+                Window.display();     
 
             }
-            
+            start = false;
        }
         
         usleep(55000);
         
+    }
+        
 
     //initilize variables
+    /*
     Game game(522, 522, "Trig Trot");
-    CircleShape player(50.0f);
-    Vector2f rectSize(174, 174);
-    RectangleShape platform1(rectSize);
-    RectangleShape platform2(rectSize);
-    RectangleShape platform3(rectSize);
-
+    
+    
+    
+    Objects Player;
     //adjust initial variables
-    player.setOrigin(player.getRadius(), player.getRadius());
-    player.setPosition(game.getWindowSize("x"), game.getWindowSize("y"));
-    player.setFillColor(Color::Green);
+    Player.player.setOrigin(Player.player.getRadius(), Player.player.getRadius());
+    //Player.player.setPosition(game.getWindowSize("x"), game.getWindowSize("y"));
+    Player.player.setFillColor(Color::Green);
 
     //game loop
     while (game.isRunning()){
         //checks events
         game.events();
         //adjust player's movement
-        playerMovement(player);
+        
         //render updates to window
-        game.update(player, platform1, platform2, platform3);
+        //game.update(player, platform1, platform2, platform3);
     }
+    */
     
  
     
