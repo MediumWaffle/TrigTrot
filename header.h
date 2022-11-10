@@ -36,7 +36,7 @@ class Objects
    Texture ptext2;
 
     void makePlayer();
-    void jump(int height, int falls, int rises, int plat); 
+    void jump(int height, int falls, int rises, int plat, bool &nojump); 
 
 
     int playerY = -125; 

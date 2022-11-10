@@ -67,27 +67,37 @@ void Objects::moveFloor(int s)
 
 }
 
-void Objects::jump(int height, int falls, int rises, int plat)
+void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
 {
      
-     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY < height)
+     
+     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY <= height and nojump == true)
         {
           
                playerY += rises;
                Player.setOrigin(playerX, playerY);
+               if(playerY >= height)
+               {
+                    nojump = false;
+               }
           
         }
-        if(playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space) )
+        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space)))
         {
             playerY -= falls;
+
             Player.setOrigin(playerX, playerY);
+            if(playerY < -118)
+            {
+               nojump = true;
+            }
         }
 }
 
 void Objects::makePlayer()
 {
      
-     ptext.loadFromFile("ghost.png");
+     ptext.loadFromFile("default.png");
      Player.setRadius(25/2);
      Player.setTexture(&ptext);
      //player.setFillColor(Color(255,255,255));

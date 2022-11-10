@@ -15,7 +15,7 @@ int main()
     
     RenderWindow Window(VideoMode(240,200), "Game",Style::Default);
     
-  
+    bool nojump = true;
     /*
     RectangleShape one;
     RectangleShape two;
@@ -176,7 +176,7 @@ int main()
        }
        
        
-         player.jump(-70,10,10, x2);
+         player.jump(-70,10,10, x2, nojump);
         
         
         Window.draw(player.Player);
