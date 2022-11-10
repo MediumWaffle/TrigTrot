@@ -77,7 +77,7 @@ void Objects::jump(int height, int falls, int rises, int plat)
                Player.setOrigin(playerX, playerY);
           
         }
-        if((playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space)) or (playerY > height-20 and Keyboard::isKeyPressed(Keyboard::Key::Space)) )
+        if(playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space) )
         {
             playerY -= falls;
             Player.setOrigin(playerX, playerY);

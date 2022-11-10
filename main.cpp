@@ -95,7 +95,10 @@ int main()
                         }
                     }
                     RectangleShape Gameover;
+                    Texture startg;
+                    startg.loadFromFile("startgame.png");
                     Gameover.setFillColor(Color::Blue);
+                    Gameover.setTexture(&startg);
                     Gameover.setSize(Vector2f(240,200));
                     Gameover.setOrigin(0,0);
                     Window.clear();
@@ -214,6 +217,9 @@ int main()
                     }
                 }
                 RectangleShape Gameover;
+                Texture over;
+                over.loadFromFile("gameover.png");
+                Gameover.setTexture(&over);
                 Gameover.setFillColor(Color::Red);
                 Gameover.setSize(Vector2f(240,200));
                 Gameover.setOrigin(0,0);
