@@ -1,5 +1,12 @@
-#include "Objects.h"
-
+/**
+ * @file functions.cpp
+ * @ingroup MalAarCal
+ * @authors Aaron Jarnes, Caleb Carter, Malik Robinson
+ * @brief Function list for game
+ * @date 10-24-2022
+ */
+#include "header.h"
+//sets the rectengles used for the floor to the right texture the s is for size
 void Objects::makeFloor(int s)
 {
      
@@ -28,7 +35,7 @@ void Objects::makeFloor(int s)
     three.setOrigin(floor3,-150);
 
 }
-
+//moves the floor s is the offset it should be the same as the size of the blocks
 void Objects::moveFloor(int s)
 {
      if(floor1 > s)
@@ -59,7 +66,7 @@ void Objects::moveFloor(int s)
         floor3 += 10;
 
 }
-
+//the function that controls the jump logic the height of the jump as well as the speed going up and down can be controlled
 void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
 {
      
@@ -86,7 +93,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
             }
         }
 }
-
+//Makes and sets the player to defuault will need to be changed when skin select is done
 void Objects::makePlayer()
 {
      
@@ -95,4 +102,36 @@ void Objects::makePlayer()
      Player.setTexture(&ptext);
      //player.setFillColor(Color(255,255,255));
      Player.setOrigin(playerX,playerY);
+}
+//sets the background this works fine just need to agree on the background texture
+void Objects::makeBackground(int s)
+{
+     background.setOrigin(backx,0);
+    background.setSize(Vector2f(s,150));
+    background2.setOrigin(backx2,0);
+    background2.setSize(Vector2f(s,150));
+    back.loadFromFile("cavewall.png");
+    background.setTexture(&back);
+    background2.setTexture(&back);
+}
+//movess the background might change to make speed ajustable
+void Objects::moveBackground()
+{
+     if(backx2 == 0)
+        {
+            backx = -240;
+            backx2 = 0;
+        }
+        if(backx == 0)
+        {
+            backx = 0;
+            backx2 = -240;
+        }
+
+        background.setOrigin(backx,0);
+        background2.setOrigin(backx2,0);
+
+        backx += 2;
+        backx2 += 2;
+
 }
