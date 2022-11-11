@@ -7,7 +7,6 @@
  */
 #include "header.h"
 #include "Game.h"
-#include "Objects.h"
 
 int main()
 {
@@ -17,37 +16,13 @@ int main()
     RenderWindow Window(VideoMode(240,200), "Game",Style::Default);
     
     bool nojump = true;
-    /*
-    RectangleShape one;
-    RectangleShape two;
-    RectangleShape three;
-    */
-    RectangleShape obs;
-    RectangleShape plat;
-    RectangleShape background;
-    background.setOrigin(0,0);
-    background.setSize(Vector2f(240,150));
-   // CircleShape player;
-
-    /*
-    one.setSize(sf::Vector2f(120, 50));
-    one.setFillColor(Color::Blue);
-    two.setSize(sf::Vector2f(120,50));
-    two.setFillColor(Color::Red);
-    three.setSize(Vector2f(120,50));
-    three.setFillColor(Color::Green);
-    */
+    
     int x = -240;
     int x2 = -340;
-    /*
-    int floor1 = 0;
-    int floor2 = floor1-120;
-    int floor3 = floor1-240;
-    */
+    RectangleShape obs;
+    RectangleShape plat;
     Texture obst;
     Texture platt;
-    Texture back;
-    back.loadFromFile("cavewall.png");
     platt.loadFromFile("floatingPlatform.png");
     obst.loadFromFile("Spike-1.png");
     //obs.setFillColor(Color(0,0,0));
@@ -57,23 +32,13 @@ int main()
     plat.setSize(Vector2f(20,20));
     plat.setOrigin(x2, -100);
     plat.setTexture(&platt);
-    background.setTexture(&back);
-   // int playerY = -130; 
-   // int playerX = -40;
-    /*
-    player.setRadius(25/2);
-    player.setFillColor(Color(255,255,255));
-    player.setOrigin(playerX,playerY);
-    */
-
     
-    /*
-    one.setOrigin(floor1,-150);
-    two.setOrigin(floor2,-150);
-    three.setOrigin(floor3,-150);
-    */
+   
+
     Objects floor;
     Objects player;
+    Objects BackGround;
+    BackGround.makeBackground(240);
     player.makePlayer();
     floor.makeFloor(120);
     bool start = false;
@@ -101,15 +66,15 @@ int main()
                             Window.close();
                         }
                     }
-                    RectangleShape Gameover;
+                    RectangleShape Gamestart;
                     Texture startg;
                     startg.loadFromFile("startgame.png");
-                    Gameover.setFillColor(Color::Blue);
-                    Gameover.setTexture(&startg);
-                    Gameover.setSize(Vector2f(240,200));
-                    Gameover.setOrigin(0,0);
+                    Gamestart.setFillColor(Color::Blue);
+                    Gamestart.setTexture(&startg);
+                    Gamestart.setSize(Vector2f(240,200));
+                    Gamestart.setOrigin(0,0);
                     Window.clear();
-                    Window.draw(Gameover);
+                    Window.draw(Gamestart);
                     Window.display();
                     if(Keyboard::isKeyPressed(Keyboard::Key::Enter))
                     {
@@ -121,71 +86,43 @@ int main()
 
         }
         Window.clear();
-
+        srand(time(nullptr));
+        int mrand = rand()%10;
         
     
-        if(x > 0)
+        if(x > 0 and mrand%2==0)
         {
             x=-240;
             
+        }
+        if(x > 0 and mrand%2!=0)
+        {
+            x = -400;
         } 
         if(x2 > 0)
         {
             x2 = -340;
         }
         floor.moveFloor(120);
+        BackGround.moveBackground();
 
-        /*
-       if(floor1 > 120)
-       {
-            floor2 = 0;
-            floor3 = -120;
-            floor1 = -240;
-       }
-       if(floor2 > 120)
-       {
-            floor3 = 0;
-            floor1 = -120;
-            floor2 = -240;
-       }
-       if(floor3 > 120)
-       {
-            floor1 = 0;
-            floor2 = -120;
-            floor3 = -240;
-       }
         
-        one.setOrigin(floor1,-150);
-        two.setOrigin(floor2,-150);
-        three.setOrigin(floor3,-150);
-        
-       
-        if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY < -70)
-        {
-            playerY += 10;
 
-        }
-        if(playerY > -130 and !Keyboard::isKeyPressed(Keyboard::Key::Space))
-        {
-            playerY -= 10;
-        }
-        if(playerX == x and playerY == -130)
-        {
-           // Window.close();
-        }
-        */
-       if(Keyboard::isKeyPressed(Keyboard::Key::C))
+       if(Keyboard::isKeyPressed(Keyboard::Key::Down))
        {   
              
              player.ptext2.loadFromFile("psycho.png");
              player.Player.setTexture(&player.ptext2);
 
        }
+       if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
+       {
+            player.Player.setTexture(&player.ptext);
+       }
        
-       
-         player.jump(-70,10,10, x2, nojump);
-        
-        Window.draw(background);
+        player.jump(-70,10,10, x2, nojump);
+        Window.draw(BackGround.background);
+        Window.draw(BackGround.background2);
         Window.draw(player.Player);
         obs.setOrigin(x, -130);
         Window.draw(obs);
@@ -203,15 +140,13 @@ int main()
         
 
 
+        
+        
         x += 10;
+        
+       
         x2 += 5;
-
-
-        /*
-        floor1 += 10;
-        floor2 += 10;
-        floor3 += 10;
-        */
+        
         
        if(player.playerX == x and player.playerY < -100)
        {
@@ -260,7 +195,8 @@ int main()
     while (game.isRunning()){
         //checks events
         game.events();
-
+        //adjust player's movement
+        
         //render updates to window
         //game.update(player, platform1, platform2, platform3);
     }
