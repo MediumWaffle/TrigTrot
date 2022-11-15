@@ -6,7 +6,7 @@
  * @date 10-24-2022
  */
 #include "header.h"
-#include "Game.h"
+//#include "Game.h"
 
 int main()
 {
@@ -23,8 +23,8 @@ int main()
     RectangleShape plat;
     Texture obst;
     Texture platt;
-    platt.loadFromFile("floatingPlatform.png");
-    obst.loadFromFile("Spike-1.png");
+    platt.loadFromFile("sprites/floatingPlatform.png");
+    obst.loadFromFile("sprites/Spike-1.png");
     //obs.setFillColor(Color(0,0,0));
     obs.setSize(Vector2f(20,20));
     obs.setTexture(&obst);
@@ -111,7 +111,7 @@ int main()
        if(Keyboard::isKeyPressed(Keyboard::Key::Down))
        {   
              
-             player.ptext2.loadFromFile("psycho.png");
+             player.ptext2.loadFromFile("sprites/psycho.png");
              player.Player.setTexture(&player.ptext2);
 
        }
