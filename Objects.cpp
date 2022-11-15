@@ -6,13 +6,15 @@
  * @date 10-24-2022
  */
 #include "header.h"
+//#include "Objects.h"
+
 //sets the rectengles used for the floor to the right texture the s is for size
 void Objects::makeFloor(int s)
 {
      
-     text1.loadFromFile("floorNormal.png");
-     text2.loadFromFile("floorWater.png");
-     text3.loadFromFile("floorBones.png");
+     text1.loadFromFile("sprites/floorNormal.png");
+     text2.loadFromFile("sprites/floorWater.png");
+     text3.loadFromFile("sprites/floorBones.png");
 
  
     one.setSize(sf::Vector2f(s, 50));
@@ -97,7 +99,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
 void Objects::makePlayer()
 {
      
-     ptext.loadFromFile("default.png");
+     ptext.loadFromFile("sprites/default.png");
      Player.setRadius(25/2);
      Player.setTexture(&ptext);
      //player.setFillColor(Color(255,255,255));

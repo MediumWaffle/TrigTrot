@@ -5,8 +5,8 @@
  * @brief Header for game. Stores all important global information
  * @date 10-24-2022
  */
-#ifndef HEADER_H
-#define HEADER_H
+#ifndef OBJECTS_H
+#define OBJECTS_H
 
 #ifdef _WIN32
 #include <Windows.h>

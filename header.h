@@ -8,8 +8,21 @@
 #ifndef HEADER_H
 #define HEADER_H
 
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
+#include <ctime>
+#include <SFML/Graphics.hpp>
+#include <cstdlib>
 #include <iostream>
 #include <string>
+#include "Objects.h"
+#include "Game.h"
+
+
 
 using namespace sf;
 
