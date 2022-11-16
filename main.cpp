@@ -24,24 +24,27 @@ int main()
     Texture obst;
     Texture platt;
     platt.loadFromFile("sprites/floatingPlatform.png");
-    obst.loadFromFile("sprites/Spike-1.png");
+    obst.loadFromFile("sprites/caveSpike.png");
     //obs.setFillColor(Color(0,0,0));
     obs.setSize(Vector2f(20,20));
     obs.setTexture(&obst);
     obs.setOrigin(x,-130);
     plat.setSize(Vector2f(20,20));
-    plat.setOrigin(x2, -100);
-    plat.setTexture(&platt);
+    plat.setOrigin(x2, -130);
+    plat.setTexture(&obst);
     
    
 
     Objects floor;
     Objects player;
     Objects BackGround;
+    Objects start;
+    start.background.setSize(Vector2f(230,100));
+    start.background.setPosition(5,5);
     BackGround.makeBackground(240);
     player.makePlayer();
     floor.makeFloor(120);
-    bool start = false;
+    bool startW = false;
 
  
     while(Window.isOpen())
@@ -55,9 +58,9 @@ int main()
             }
         }
 
-        if(start == false)
+        if(startW == false)
         {
-            while(start == false)
+            while(startW == false)
                 {
                     while(Window.pollEvent(e))
                     {
@@ -68,17 +71,34 @@ int main()
                     }
                     RectangleShape Gamestart;
                     Texture startg;
-                    startg.loadFromFile("startgame.png");
+                    startg.loadFromFile("sprites/welcome.png");
                     Gamestart.setFillColor(Color::Blue);
                     Gamestart.setTexture(&startg);
+                    start.background.setTexture(&startg);
                     Gamestart.setSize(Vector2f(240,200));
                     Gamestart.setOrigin(0,0);
                     Window.clear();
-                    Window.draw(Gamestart);
+                    //Window.draw(Gamestart);
+                     player.jump(-70,10,10, x2, nojump);
+                    Window.draw(BackGround.background);
+                    Window.draw(BackGround.background2);
+                    Window.draw(player.Player);
+                    obs.setOrigin(x, -130);
+                    Window.draw(obs);
+                    Window.draw(floor.one);
+                    Window.draw(floor.two);
+                    Window.draw(floor.three); 
+                    floor.moveFloor(120);
+                    BackGround.moveBackground(); 
+                    x += 10;
+                    x2 += 5;
+                    Window.draw(start.background);
                     Window.display();
+                    usleep(55000);
+                    
                     if(Keyboard::isKeyPressed(Keyboard::Key::Enter))
                     {
-                        start = true;
+                        startW = true;
                     }
                     
 
@@ -132,7 +152,7 @@ int main()
         Window.draw(floor.one);
         Window.draw(floor.two);
         Window.draw(floor.three); 
-        plat.setOrigin(x2,-100);
+        plat.setOrigin(x2,-130);
         Window.draw(plat);
         
 
@@ -148,7 +168,7 @@ int main()
         x2 += 5;
         
         
-       if(player.playerX == x and player.playerY < -100)
+       if((player.playerX == x or player.playerX == x2) and (player.playerY < -100))
        {
             while(!Keyboard::isKeyPressed(Keyboard::Key::S))
             {
@@ -171,7 +191,7 @@ int main()
                 Window.display();     
 
             }
-            start = false;
+            startW = false;
        }
         
         usleep(55000);
