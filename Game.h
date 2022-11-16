@@ -12,9 +12,12 @@ class Game
         Game(int winSizeX, int winSizeY, std::string gameName);
         ~Game(){}
         void events();
-        void update(CircleShape player, RectangleShape platform1, RectangleShape platform2, RectangleShape platform3);
+        void display();
         unsigned int getWindowSize(std::string xy);
         bool isRunning();
+        void draw(CircleShape &c);
+        void draw(RectangleShape &s);
+        void clear();
     private:
         Event e;
         RenderWindow window;
