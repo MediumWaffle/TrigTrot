@@ -16,7 +16,7 @@ int main()
     RenderWindow Window(VideoMode(240,200), "Game",Style::Default);
     
     bool nojump = true;
-    
+  /* 
     int x = -240;
     int x2 = -340;
     RectangleShape obs;
@@ -32,18 +32,20 @@ int main()
     plat.setSize(Vector2f(20,20));
     plat.setOrigin(x2, -130);
     plat.setTexture(&obst);
-    
+    */
    
 
     Objects floor;
     Objects player;
     Objects BackGround;
     Objects start;
+    Objects OBS;
     start.background.setSize(Vector2f(230,100));
     start.background.setPosition(5,5);
     BackGround.makeBackground(240);
     player.makePlayer();
     floor.makeFloor(120);
+    OBS.makeObs(-240,-130);
     bool startW = false;
 
  
@@ -79,19 +81,18 @@ int main()
                     Gamestart.setOrigin(0,0);
                     Window.clear();
                     //Window.draw(Gamestart);
-                     player.jump(-70,10,10, x2, nojump);
+                     player.jump(-70,10,10, 1, nojump);
                     Window.draw(BackGround.background);
                     Window.draw(BackGround.background2);
                     Window.draw(player.Player);
-                    obs.setOrigin(x, -130);
-                    Window.draw(obs);
+                    //obs.setOrigin(x, -130);
+                    Window.draw(OBS.obs);
                     Window.draw(floor.one);
                     Window.draw(floor.two);
                     Window.draw(floor.three); 
                     floor.moveFloor(120);
                     BackGround.moveBackground(); 
-                    x += 10;
-                    x2 += 5;
+                    OBS.moveObs(10);
                     Window.draw(start.background);
                     Window.display();
                     usleep(55000);
@@ -106,6 +107,7 @@ int main()
 
         }
         Window.clear();
+        /*
         srand(time(nullptr));
         int mrand = rand()%10;
         
@@ -123,6 +125,7 @@ int main()
         {
             x2 = -340;
         }
+        */
         floor.moveFloor(120);
         BackGround.moveBackground();
 
@@ -140,35 +143,31 @@ int main()
             player.Player.setTexture(&player.ptext);
        }
        
-        player.jump(-70,10,10, x2, nojump);
+        player.jump(-70,10,10, 1, nojump);
         Window.draw(BackGround.background);
         Window.draw(BackGround.background2);
         Window.draw(player.Player);
-        obs.setOrigin(x, -130);
-        Window.draw(obs);
+       // obs.setOrigin(x, -130);
+        Window.draw(OBS.obs);
 
 
         
         Window.draw(floor.one);
         Window.draw(floor.two);
         Window.draw(floor.three); 
-        plat.setOrigin(x2,-130);
-        Window.draw(plat);
-        
-
         Window.display();
         
 
 
         
         
-        x += 10;
+        //x += 10;
         
-       
-        x2 += 5;
+       OBS.moveObs(10);
+        //x2 += 5;
         
         
-       if((player.playerX == x or player.playerX == x2) and (player.playerY < -100))
+       if((player.playerX == OBS.obsx) and (player.playerY < -100))
        {
             while(!Keyboard::isKeyPressed(Keyboard::Key::S))
             {

@@ -31,7 +31,8 @@ class Objects
     void moveBackground();
     void makePlayer();
     void jump(int height, int falls, int rises, int plat, bool &nojump);
-
+    void makeObs(int x, int y);
+    void moveObs(int speed);
    
     int floor1, floor2, floor3;
     int backx, backx2;
@@ -43,13 +44,14 @@ class Objects
    Texture text1, text2, text3;
    Texture ptext;
    Texture ptext2;
-   Texture back;
+   Texture back, obst;
 
      
 
 
     int playerY = -125; 
     int playerX = -40;
+    int obsx, obsy;
 
 
 };

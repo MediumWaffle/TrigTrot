@@ -116,6 +116,29 @@ void Objects::makeBackground(int s)
     background.setTexture(&back);
     background2.setTexture(&back);
 }
+
+void Objects::makeObs(int x, int y)
+{
+     obsx = x;
+     obsy = y;
+     obst.loadFromFile("sprites/caveSpike.png");
+     obs.setSize(Vector2f(20,20));
+    obs.setTexture(&obst);
+    obs.setOrigin(obsx,obsy);
+
+}
+
+void Objects::moveObs(int speed)
+{
+     obsx += speed;
+     obs.setOrigin(obsx,obsy);
+     if(obsx > 0)
+     {
+          obsx = -240;
+          obs.setOrigin(obsx,obsy);
+     }
+}
+
 //movess the background might change to make speed ajustable
 void Objects::moveBackground()
 {
