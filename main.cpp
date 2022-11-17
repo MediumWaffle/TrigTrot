@@ -150,7 +150,7 @@ int main()
                 RectangleShape Gameover;
                 Texture over;
 
-                over.loadFromFile("gameover.png");
+                over.loadFromFile("sprites/gameover.png");
                 Gameover.setTexture(&over);
                 Gameover.setFillColor(Color::Red);
                 Gameover.setSize(Vector2f(240,200));
