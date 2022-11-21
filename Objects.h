@@ -29,7 +29,7 @@ class Objects
     void moveFloor(int s);
     void makeBackground(int s);
     void moveBackground();
-    void makePlayer();
+    void makePlayer(std::string t);
     void jump(int height, int falls, int rises, int plat, bool &nojump);
     void makeObs(int x, int y);
     void moveObs(int speed);

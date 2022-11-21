@@ -18,6 +18,7 @@ int main()
 
     Objects floor;
     Objects player;
+    Objects cPlayer;
     Objects BackGround;
     Objects start;
     Objects OBS;
@@ -25,7 +26,8 @@ int main()
     start.background.setSize(Vector2f(230,100));
     start.background.setPosition(5,5);
     BackGround.makeBackground(240);
-    player.makePlayer();
+    player.makePlayer("sprites/default.png");
+    cPlayer.makePlayer("default_crouch.png");
     floor.makeFloor(120);
     OBS.makeObs(-240,-130);
     bool startW = false;
@@ -53,16 +55,16 @@ int main()
                 game.clear();
                 //Window.draw(Gamestart);
                 game.draw(Gamestart);
-                player.jump(-70,10,10, x2, nojump);
+                player.jump(-70,10,10, 1, nojump);
                 //Window.draw(BackGround.background);
                 game.draw(BackGround.background);
                 //Window.draw(BackGround.background2);
                 game.draw(BackGround.background2);
                 //Window.draw(player.Player);
                 game.draw(player.Player);
-                obs.setOrigin(x, -130);
+                
                 //Window.draw(obs);
-                game.draw(obs);
+                game.draw(OBS.obs);
                 //Window.draw(floor.one);
                 game.draw(floor.one);
                 //Window.draw(floor.two);
@@ -71,8 +73,8 @@ int main()
                 game.draw(floor.three);
                 floor.moveFloor(120);
                 BackGround.moveBackground(); 
-                x += 10;
-                x2 += 5;
+                OBS.moveObs(10);
+    
                 //Window.draw(start.background);
                 game.draw(start.background);
                 //Window.display();
@@ -86,71 +88,57 @@ int main()
                     {
                         startW = true;
                    
-                }
+                    }
             }
         }
 
-        floor.moveFloor(120);
-        BackGround.moveBackground();
-
+            floor.moveFloor(120);
+            BackGround.moveBackground();
+            player.jump(-70,10,10, 1, nojump);
+            game.draw(BackGround.background);
+            game.draw(BackGround.background2);
         
 
        if(Keyboard::isKeyPressed(Keyboard::Key::Down))
        {   
-             
-             player.ptext2.loadFromFile("sprites/psycho.png");
-             player.Player.setTexture(&player.ptext2);
+            
+            game.draw(cPlayer.Player);
 
        }
        if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
        {
-            player.Player.setTexture(&player.ptext);
+           
+            game.draw(player.Player);
+            
        }
        
-        player.jump(-70,10,10, 1, nojump);
-        
-        
+    
+        game.draw(OBS.obs);
 
 
         
         
-        //x += 10;
         
        OBS.moveObs(10);
-        //x2 += 5;
+
         
         
-       if((player.playerX == OBS.obsx) and (player.playerY < -100))
-       {
+       
 
-
-        player.jump(-70,10,10, x2, nojump);
-        obs.setOrigin(x, -130);
-        plat.setOrigin(x2,-130);
-        //Window.draw(BackGround.background);
-        game.draw(BackGround.background);
-        //Window.draw(BackGround.background2);
-        game.draw(BackGround.background2);
-        //Window.draw(player.Player);
-        game.draw(player.Player);
-        //Window.draw(obs);
-        game.draw(obs);
-        //Window.draw(floor.one);
+        
+       
         game.draw(floor.one);
-        //Window.draw(floor.two);
+       
         game.draw(floor.two);
-        //Window.draw(floor.three); 
+       
         game.draw(floor.three);
-        //Window.draw(plat);
-        game.draw(plat);
-
-        //Window.display();
+       
         game.display();
         
-        x += 10;
-        x2 += 5;
+        
+       
 
-        if((player.playerX == x or player.playerX == x2) and (player.playerY < -100))
+        if((player.playerX == OBS.obsx) and (player.playerY < -100))
         {
 
             while(!Keyboard::isKeyPressed(Keyboard::Key::S))
@@ -160,7 +148,7 @@ int main()
                 RectangleShape Gameover;
                 Texture over;
 
-                over.loadFromFile("sprites/gameover.png");
+                over.loadFromFile("gameOver.jpg");
                 Gameover.setTexture(&over);
                 Gameover.setFillColor(Color::Red);
                 Gameover.setSize(Vector2f(240,200));
@@ -179,3 +167,8 @@ int main()
     }
     return 0;
 }
+
+
+
+
+
