@@ -113,7 +113,7 @@ void Objects::makeBackground(int s)
     background.setSize(Vector2f(s,150));
     background2.setOrigin(backx2,0);
     background2.setSize(Vector2f(s,150));
-    back.loadFromFile("caveWallMerge.png");
+    back.loadFromFile("sprites/caveWallMerge.png");
     background.setTexture(&back);
     background2.setTexture(&back);
 }

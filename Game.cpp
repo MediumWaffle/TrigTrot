@@ -12,12 +12,7 @@ void Game::events(){
     }
 }
 
-void Game::update(CircleShape player, RectangleShape platform1, RectangleShape platform2, RectangleShape platform3){
-    window.clear();
-    window.draw(player);
-    window.draw(platform1);
-    window.draw(platform2);
-    window.draw(platform3);
+void Game::display(){
     window.display();
 }
 
@@ -35,4 +30,16 @@ bool Game::isRunning(){
         return true;
     
     return false;
+}
+
+void Game::draw(CircleShape &c){
+    window.draw(c);
+}
+
+void Game::draw(RectangleShape &s){
+    window.draw(s);
+}
+
+void Game::clear(){
+    window.clear();
 }
