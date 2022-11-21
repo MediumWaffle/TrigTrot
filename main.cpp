@@ -13,29 +13,21 @@ int main()
     Game game(240, 200, "Trig Trot");
     
     bool nojump = true;
-    int x = -240;
-    int x2 = -340;
-    RectangleShape obs;
-    RectangleShape plat;
-    Texture obst;
+
+   
+
     Objects floor;
     Objects player;
     Objects BackGround;
     Objects start;
+    Objects OBS;
 
-    obst.loadFromFile("sprites/caveSpike.png");
-    obs.setSize(Vector2f(20,20));
-    obs.setTexture(&obst);
-    obs.setOrigin(x,-130);
-    plat.setSize(Vector2f(20,20));
-    plat.setOrigin(x2, -130);
-    plat.setTexture(&obst);
-    
     start.background.setSize(Vector2f(230,100));
     start.background.setPosition(5,5);
     BackGround.makeBackground(240);
     player.makePlayer();
     floor.makeFloor(120);
+    OBS.makeObs(-240,-130);
     bool startW = false;
 
 
@@ -87,33 +79,50 @@ int main()
                 game.display();
                 usleep(55000);
                 
-                if(Keyboard::isKeyPressed(Keyboard::Key::Enter))
-                {
-                    startW = true;
+                
+
+                    
+                    if(Keyboard::isKeyPressed(Keyboard::Key::Enter))
+                    {
+                        startW = true;
+                   
                 }
             }
         }
 
-        //Window.clear();
-        game.clear();
-        srand(time(nullptr));
-        int mrand = rand()%10;
-        
-        if(x > 0 and mrand%2==0){x=-240;}
-        if(x > 0 and mrand%2!=0){x = -400;}
-        if(x2 > 0){x2 = -340;}
         floor.moveFloor(120);
         BackGround.moveBackground();
 
-        if(Keyboard::isKeyPressed(Keyboard::Key::Down))
-        {
-            player.ptext2.loadFromFile("sprites/psycho.png");
-            player.Player.setTexture(&player.ptext2);
-        }
-        if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
-        {
+        
+
+       if(Keyboard::isKeyPressed(Keyboard::Key::Down))
+       {   
+             
+             player.ptext2.loadFromFile("sprites/psycho.png");
+             player.Player.setTexture(&player.ptext2);
+
+       }
+       if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
+       {
             player.Player.setTexture(&player.ptext);
-        }
+       }
+       
+        player.jump(-70,10,10, 1, nojump);
+        
+        
+
+
+        
+        
+        //x += 10;
+        
+       OBS.moveObs(10);
+        //x2 += 5;
+        
+        
+       if((player.playerX == OBS.obsx) and (player.playerY < -100))
+       {
+
 
         player.jump(-70,10,10, x2, nojump);
         obs.setOrigin(x, -130);
@@ -143,6 +152,7 @@ int main()
 
         if((player.playerX == x or player.playerX == x2) and (player.playerY < -100))
         {
+
             while(!Keyboard::isKeyPressed(Keyboard::Key::S))
             {
                 game.events();
