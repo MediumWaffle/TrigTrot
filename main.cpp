@@ -37,13 +37,16 @@ int main()
 
     Objects floor;
     Objects player;
+    Objects cPlayer;
     Objects BackGround;
     Objects start;
     Objects OBS;
     start.background.setSize(Vector2f(230,100));
     start.background.setPosition(5,5);
     BackGround.makeBackground(240);
-    player.makePlayer();
+    player.makePlayer("sprites/default.png");
+    cPlayer.makePlayer("default_crouch.png");
+    //cPlayer.Player.setTexture(&cPlayer.ptext2);
     floor.makeFloor(120);
     OBS.makeObs(-240,-130);
     bool startW = false;
@@ -128,25 +131,29 @@ int main()
         */
         floor.moveFloor(120);
         BackGround.moveBackground();
-
+            player.jump(-70,10,10, 1, nojump);
+            Window.draw(BackGround.background);
+            Window.draw(BackGround.background2);
         
 
        if(Keyboard::isKeyPressed(Keyboard::Key::Down))
        {   
              
-             player.ptext2.loadFromFile("sprites/psycho.png");
-             player.Player.setTexture(&player.ptext2);
+             //player.ptext2.loadFromFile("default_crouch.png");
+            // player.Player.setTexture(&player.ptext2);
+            
+            Window.draw(cPlayer.Player);
 
        }
        if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
        {
-            player.Player.setTexture(&player.ptext);
+            //player.Player.setTexture(&player.ptext);
+            Window.draw(player.Player);
+            
        }
        
-        player.jump(-70,10,10, 1, nojump);
-        Window.draw(BackGround.background);
-        Window.draw(BackGround.background2);
-        Window.draw(player.Player);
+        
+        
        // obs.setOrigin(x, -130);
         Window.draw(OBS.obs);
 

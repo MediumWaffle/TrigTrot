@@ -96,10 +96,11 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
         }
 }
 //Makes and sets the player to defuault will need to be changed when skin select is done
-void Objects::makePlayer()
+void Objects::makePlayer(std::string t)
 {
      
-     ptext.loadFromFile("sprites/default.png");
+     ptext.loadFromFile(t);
+     ptext2.loadFromFile(t);
      Player.setRadius(25/2);
      Player.setTexture(&ptext);
      //player.setFillColor(Color(255,255,255));
