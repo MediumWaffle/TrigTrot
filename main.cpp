@@ -11,9 +11,14 @@
 int main()
 {
     Game game(240, 200, "Trig Trot");
+
+    string playerskin = "sprites/default.png";
+    string cplayerskin = "sprites/default_crouch.png";
     
     bool nojump = true;
     bool crouch = false;
+    bool skinmenu = false;
+    
 
    
 
@@ -28,8 +33,8 @@ int main()
     start.background.setSize(Vector2f(230,100));
     start.background.setPosition(5,5);
     BackGround.makeBackground(240);
-    player.makePlayer("sprites/default.png");
-    cPlayer.makePlayer("default_crouch.png");
+    player.makePlayer(playerskin);
+    cPlayer.makePlayer(cplayerskin);
     floor.makeFloor(120);
     OBS.makeObs(-240,-130);
     TopObs.makeTopObs(-340,0);
@@ -45,6 +50,9 @@ int main()
             while(startW == false)
             {
                 game.events();
+
+                player.makePlayer(playerskin);
+                cPlayer.makePlayer(cplayerskin);
 
                 RectangleShape Gamestart;
                 RectangleShape Start;
@@ -106,11 +114,119 @@ int main()
                     if(Keyboard::isKeyPressed(Keyboard::Key::Enter))
                     {
                         startW = true;
-                   
+                    }
+                    if(Keyboard::isKeyPressed(Keyboard::Key::S))
+                    {
+                        skinmenu = true;
+                    }
+                    while(skinmenu == true)
+                    {
+                        game.clear();
+                        RectangleShape b, s, p;
+                        Texture ts, csbg, pt;
+                        player.makePlayer(playerskin);
+                        player.Player.setOrigin(-10,-50);
+                        player.Player.setSize(Vector2f(70,70));
+                        pt.loadFromFile("sprites/default.png");
+                        csbg.loadFromFile("sprites/characterSelectBG.png");
+                        ts.loadFromFile("sprites/charSelect.png");
+                        s.setTexture(&ts);
+                        s.setSize(Vector2f(60,60));
+                        p.setSize(Vector2f(50,40));
+                       // b.setFillColor(Color::Blue);
+                        b.setTexture(&csbg);
+                        b.setSize(Vector2f(240,200));
+                        b.setOrigin(0,0);
+
+                        
+                        p.setTexture(&pt);
+                        p.setOrigin(-85,-2.5);
+                        s.setOrigin(-80,-0);
+                        game.draw(b);
+                        game.draw(s);
+                        game.draw(p);
+                        game.draw(player.Player);
+
+                        s.setOrigin(-150,-0);
+                        p.setOrigin(-155,-2.5);
+                        pt.loadFromFile("sprites/psycho.png");
+                        p.setTexture(&pt);
+                        game.draw(s);
+                        game.draw(p);
+
+                        s.setOrigin(-80,-70);
+                        p.setOrigin(-85,-72.5);
+                        pt.loadFromFile("sprites/piggy.png");
+                        p.setTexture(&pt);
+                        game.draw(s);
+                        game.draw(p);
+
+                        s.setOrigin(-150,-70);
+                        p.setOrigin(-155,-72.5);
+                        pt.loadFromFile("sprites/ghost.png");
+                        p.setTexture(&pt);
+                        game.draw(s);
+                        game.draw(p);
+
+                        s.setOrigin(-80,-140);
+                        p.setOrigin(-85,-142.5);
+                        pt.loadFromFile("sprites/minecraft.png");
+                        p.setTexture(&pt);
+                        game.draw(s);
+                        game.draw(p);
+
+                        s.setOrigin(-150,-140);
+                        p.setOrigin(-155,-142.5);
+                        pt.loadFromFile("sprites/spiderman.png");
+                        p.setTexture(&pt);
+                        game.draw(s);
+                        game.draw(p);
+                        game.display();
+
+                        if(Keyboard::isKeyPressed(Keyboard::Key::B))
+                        {
+                            skinmenu = false;
+                        }
+                        if(Keyboard::isKeyPressed(Keyboard::Key::Num1))
+                        {
+                            playerskin = "sprites/default.png";
+                            cplayerskin = "sprites/default_crouch.png";
+                            
+                        }
+                        if(Keyboard::isKeyPressed(Keyboard::Key::Num2))
+                        {
+                            playerskin = "sprites/psycho.png";
+                            cplayerskin = "sprites/psycho_crouch.png";
+                        }
+                        if(Keyboard::isKeyPressed(Keyboard::Key::Num3))
+                        {
+                            playerskin = "sprites/piggy.png";
+                            cplayerskin = "sprites/piggy_crouch.png";
+                        }
+                        if(Keyboard::isKeyPressed(Keyboard::Key::Num4))
+                        {
+                            playerskin = "sprites/ghost.png";
+                            cplayerskin = "sprites/ghost_crouch.png";
+                        }
+                        if(Keyboard::isKeyPressed(Keyboard::Key::Num5))
+                        {
+                            playerskin = "sprites/minecraft.png";
+                            cplayerskin = "sprites/minecraft_crouch.png";
+                        }
+                        if(Keyboard::isKeyPressed(Keyboard::Key::Num6))
+                        {
+                            playerskin = "sprites/spiderman.png";
+                            cplayerskin = "sprites/spiderman_crouch.png";
+                        }
+
+
+
                     }
             }
         }
-
+            player.makePlayer(playerskin);
+            cPlayer.makePlayer(cplayerskin);
+            
             floor.moveFloor(120);
             BackGround.moveBackground();
             player.jump(-70,10,10, 1, nojump);
@@ -143,16 +259,16 @@ int main()
         if((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false))
         {
 
-            while(!Keyboard::isKeyPressed(Keyboard::Key::S))
+            while(!Keyboard::isKeyPressed(Keyboard::Key::R))
             {
                 game.events();
 
                 RectangleShape Gameover;
                 Texture over;
 
-                over.loadFromFile("gameOver.jpg");
+                over.loadFromFile("sprites/gameover.png");
                 Gameover.setTexture(&over);
-                Gameover.setFillColor(Color::Red);
+                //Gameover.setFillColor(Color::Red);
                 Gameover.setSize(Vector2f(240,200));
                 Gameover.setOrigin(0,0);
 

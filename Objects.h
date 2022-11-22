@@ -41,7 +41,7 @@ class Objects
    RectangleShape one, two, three;
    RectangleShape background, background2;
    RectangleShape obs, plat;
-   CircleShape Player;
+   RectangleShape Player;
    Texture text1, text2, text3;
    Texture ptext;
    Texture ptext2;

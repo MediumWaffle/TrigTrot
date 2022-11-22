@@ -101,7 +101,7 @@ void Objects::makePlayer(std::string t)
      
      ptext.loadFromFile(t);
      ptext2.loadFromFile(t);
-     Player.setRadius(25/2);
+     Player.setSize(Vector2f(25,25));
      Player.setTexture(&ptext);
      //player.setFillColor(Color(255,255,255));
      Player.setOrigin(playerX,playerY);

@@ -25,5 +25,6 @@
 
 
 using namespace sf;
+using std::string;
 
 #endif
