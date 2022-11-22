@@ -73,7 +73,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
 {
      
      
-     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY <= height and nojump == true)
+     if(Keyboard::isKeyPressed(Keyboard::Key::Up) and playerY <= height and nojump == true)
         {
           
                playerY += rises;
@@ -84,7 +84,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
                }
           
         }
-        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space)))
+        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Up)))
         {
             playerY -= falls;
 
@@ -129,14 +129,34 @@ void Objects::makeObs(int x, int y)
 
 }
 
+void Objects::makeTopObs(int x, int y)
+{
+     obsx = x;
+     obsy = y;
+     obst.loadFromFile("sprites/topSpike.png");
+     obs.setSize(Vector2f(50,130));
+     obs.setTexture(&obst);
+     obs.setOrigin(x,y);
+
+
+}
+
 void Objects::moveObs(int speed)
 {
+     srand(time(NULL));
+     int r = rand();
+
      obsx += speed;
      obs.setOrigin(obsx,obsy);
-     if(obsx > 0)
+     if(obsx > 20 and r%2 == 0 )
      {
           obsx = -240;
           obs.setOrigin(obsx,obsy);
+     }
+     else if(obsx > 20 and r%2 != 0)
+     {
+          obsx = -400;
+          obs.setOrigin(obsx, obsy);
      }
 }
 
