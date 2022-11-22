@@ -13,6 +13,7 @@ int main()
     Game game(240, 200, "Trig Trot");
     
     bool nojump = true;
+    bool crouch = false;
 
    
 
@@ -22,6 +23,7 @@ int main()
     Objects BackGround;
     Objects start;
     Objects OBS;
+    Objects TopObs;
 
     start.background.setSize(Vector2f(230,100));
     start.background.setPosition(5,5);
@@ -30,6 +32,7 @@ int main()
     cPlayer.makePlayer("default_crouch.png");
     floor.makeFloor(120);
     OBS.makeObs(-240,-130);
+    TopObs.makeTopObs(-340,0);
     bool startW = false;
 
 
@@ -44,13 +47,25 @@ int main()
                 game.events();
 
                 RectangleShape Gamestart;
+                RectangleShape Start;
+                RectangleShape Skins;
+                Texture tstart;
+                Texture skin;
                 Texture startg;
+                skin.loadFromFile("sprites/skins.png");
+                tstart.loadFromFile("sprites/start.png");
                 startg.loadFromFile("sprites/welcome.png");
                 Gamestart.setFillColor(Color::Blue);
                 Gamestart.setTexture(&startg);
+                Start.setTexture(&tstart);
+                Skins.setTexture(&skin);
                 start.background.setTexture(&startg);
                 Gamestart.setSize(Vector2f(240,200));
+                Start.setSize(Vector2f(100,50));
+                Skins.setSize(Vector2f(100,50));
                 Gamestart.setOrigin(0,0);
+                Start.setOrigin(-10,-150);
+                Skins.setOrigin(-130,-150);
                 //Window.clear();
                 game.clear();
                 //Window.draw(Gamestart);
@@ -65,15 +80,19 @@ int main()
                 
                 //Window.draw(obs);
                 game.draw(OBS.obs);
+                game.draw(TopObs.obs);
                 //Window.draw(floor.one);
                 game.draw(floor.one);
                 //Window.draw(floor.two);
                 game.draw(floor.two);
                 //Window.draw(floor.three); 
                 game.draw(floor.three);
+                game.draw(Start);
+                game.draw(Skins);
                 floor.moveFloor(120);
                 BackGround.moveBackground(); 
                 OBS.moveObs(10);
+                TopObs.moveObs(10);
     
                 //Window.draw(start.background);
                 game.draw(start.background);
@@ -103,42 +122,25 @@ int main()
        {   
             
             game.draw(cPlayer.Player);
+            crouch = true;
 
        }
        if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
        {
            
             game.draw(player.Player);
+            crouch = false;
             
        }
-       
-    
         game.draw(OBS.obs);
-
-
-        
-        
-        
-       OBS.moveObs(10);
-
-        
-        
-       
-
-        
-       
+        game.draw(TopObs.obs);  
+        OBS.moveObs(10);
+        TopObs.moveObs(10);
         game.draw(floor.one);
-       
         game.draw(floor.two);
-       
         game.draw(floor.three);
-       
         game.display();
-        
-        
-       
-
-        if((player.playerX == OBS.obsx) and (player.playerY < -100))
+        if((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false))
         {
 
             while(!Keyboard::isKeyPressed(Keyboard::Key::S))

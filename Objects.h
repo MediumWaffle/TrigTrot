@@ -33,6 +33,7 @@ class Objects
     void jump(int height, int falls, int rises, int plat, bool &nojump);
     void makeObs(int x, int y);
     void moveObs(int speed);
+    void makeTopObs(int x, int y);
    
     int floor1, floor2, floor3;
     int backx, backx2;
