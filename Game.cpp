@@ -8,6 +8,7 @@ void Game::events(){
     while(window.pollEvent(e)){
         if (e.type == e.Closed){
             window.close();
+            exit(0);
         }
     }
 }
