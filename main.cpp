@@ -51,6 +51,14 @@ int main()
     bool startW = false;
     bool deathscreen = false;
 
+    //score counter
+    double n = 0;
+    Text t;
+    Font font;
+    font.loadFromFile("font.ttf");
+    t.setFont(font);
+    t.setPosition(Vector2f(160,0));
+
 
     //Game Loop
     while (game.isRunning())
@@ -61,6 +69,7 @@ int main()
         // Into Screen
         if (startW == false)
         {
+            intro.setPlayingOffset(seconds(15.0f));
             dead.stop();
             intro.play();
             startScreen(startW, game, player, playerskin, cPlayer, cplayerskin, start, nojump, BackGround, OBS, TopObs, floor, skinmenu);
@@ -69,7 +78,7 @@ int main()
         if (startW == true && deathscreen == false){
             intro.stop();
             ingame.play();
-            gameScreen(startW, deathscreen, game, player, playerskin, cPlayer, cplayerskin, floor, BackGround, nojump, crouch, OBS, TopObs);
+            gameScreen(startW, deathscreen, game, player, playerskin, cPlayer, cplayerskin, floor, BackGround, nojump, crouch, OBS, TopObs,n,t);
         }
         // Death Screen
         if (deathscreen)

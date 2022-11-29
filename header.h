@@ -22,6 +22,7 @@
 #include "Objects.h"
 #include "Game.h"
 #include <SFML/Audio.hpp>
+#include <sstream>
 
 using namespace sf;
 using std::string;
@@ -32,7 +33,7 @@ Objects &TopObs, Objects &floor, bool &skinmenu);
 void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin, string &cplayerskin);
 void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, 
 string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump,
-bool &crouch, Objects &OBS, Objects &TopObs);
+bool &crouch, Objects &OBS, Objects &TopObs, double n, Text &t);
 void deathScreen(bool &deathscreen, Game &game, bool &startW);
 
 #endif

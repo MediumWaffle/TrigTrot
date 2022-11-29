@@ -16,6 +16,7 @@ class Game
         unsigned int getWindowSize(std::string xy);
         bool isRunning();
         void draw(CircleShape &c);
+        void draw(Text &t);
         void draw(RectangleShape &s);
         void clear();
     private:

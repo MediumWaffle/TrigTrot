@@ -171,13 +171,18 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
     }
 }
 
-void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump, bool &crouch, Objects &OBS, Objects &TopObs){
+void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump, bool &crouch, Objects &OBS, Objects &TopObs, double n, Text &t){
     while (startW == true && deathscreen == false)
     {
         game.events();
 
         player.makePlayer(playerskin);
         cPlayer.makePlayer(cplayerskin);
+
+        std::stringstream s;
+        s << n;
+        string str = s.str();
+        t.setString(str);
 
         floor.moveFloor(120);
         BackGround.moveBackground();
@@ -202,8 +207,10 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(floor.one);
         game.draw(floor.two);
         game.draw(floor.three);
+        game.draw(t);
         game.display();
         usleep(55000);
+        n += .01;
         if ((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false))
         {
             deathscreen = true;
