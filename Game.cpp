@@ -44,3 +44,7 @@ void Game::draw(RectangleShape &s){
 void Game::clear(){
     window.clear();
 }
+
+void Game::draw(Text &t){
+    window.draw(t);
+}
