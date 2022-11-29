@@ -10,15 +10,19 @@
 
 int main()
 {
+    //make the window
     Game game(240, 200, "Trig Trot");
 
+    //defaulting the player skins
     string playerskin = "sprites/default.png";
     string cplayerskin = "sprites/default_crouch.png";
 
+    //initilizing booleans
     bool nojump = true;
     bool crouch = false;
     bool skinmenu = false;
 
+    //music initilization
     Music intro;
     intro.openFromFile("music/intro.wav");
     Music ingame;
@@ -26,6 +30,7 @@ int main()
     Music dead;
     dead.openFromFile("music/dead.wav");
 
+    //making objects
     Objects floor;
     Objects player;
     Objects cPlayer;
@@ -34,6 +39,7 @@ int main()
     Objects OBS;
     Objects TopObs;
 
+    //initilizing objects
     start.background.setSize(Vector2f(230, 100));
     start.background.setPosition(5, 5);
     BackGround.makeBackground(240);
@@ -45,21 +51,27 @@ int main()
     bool startW = false;
     bool deathscreen = false;
 
+
+    //Game Loop
     while (game.isRunning())
     {
+        //event handler
         game.events();
         
+        // Into Screen
         if (startW == false)
         {
             dead.stop();
             intro.play();
             startScreen(startW, game, player, playerskin, cPlayer, cplayerskin, start, nojump, BackGround, OBS, TopObs, floor, skinmenu);
         }
+        // Game Loop Screen
         if (startW == true && deathscreen == false){
             intro.stop();
             ingame.play();
             gameScreen(startW, deathscreen, game, player, playerskin, cPlayer, cplayerskin, floor, BackGround, nojump, crouch, OBS, TopObs);
         }
+        // Death Screen
         if (deathscreen)
         {
             ingame.stop();
