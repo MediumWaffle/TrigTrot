@@ -126,6 +126,7 @@ void Objects::makeObs(int x, int y)
      obs.setSize(Vector2f(20,20));
     obs.setTexture(&obst);
     obs.setOrigin(obsx,obsy);
+    top = false;
 
 }
 
@@ -137,6 +138,7 @@ void Objects::makeTopObs(int x, int y)
      obs.setSize(Vector2f(50,130));
      obs.setTexture(&obst);
      obs.setOrigin(x,y);
+     top = true;
 
 
 }
@@ -145,19 +147,17 @@ void Objects::moveObs(int speed)
 {
      srand(time(NULL));
      int r = rand();
-
      obsx += speed;
      obs.setOrigin(obsx,obsy);
-     if(obsx > 20 and r%2 == 0 )
+     if(obsx > 20 and top == false)
      {
-          obsx = -240;
-          obs.setOrigin(obsx,obsy);
+          obsx = -240;   
      }
-     else if(obsx > 20 and r%2 != 0)
+     if(obsx > 20 and top == true)
      {
-          obsx = -400;
-          obs.setOrigin(obsx, obsy);
+          obsx = -340;   
      }
+     
 }
 
 //movess the background might change to make speed ajustable
