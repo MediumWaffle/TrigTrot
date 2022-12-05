@@ -10,18 +10,27 @@
 
 int main()
 {
+    //make the window
     Game game(240, 200, "Trig Trot");
 
+    //defaulting the player skins
     string playerskin = "sprites/default.png";
     string cplayerskin = "sprites/default_crouch.png";
-    
+
+    //initilizing booleans
     bool nojump = true;
     bool crouch = false;
     bool skinmenu = false;
-    
 
-   
+    //music initilization
+    Music intro;
+    intro.openFromFile("music/intro.wav");
+    Music ingame;
+    ingame.openFromFile("music/play.wav");
+    Music dead;
+    dead.openFromFile("music/dead.wav");
 
+    //making objects
     Objects floor;
     Objects player;
     Objects cPlayer;
@@ -30,23 +39,37 @@ int main()
     Objects OBS;
     Objects TopObs;
 
-    start.background.setSize(Vector2f(230,100));
-    start.background.setPosition(5,5);
+    //initilizing objects
+    start.background.setSize(Vector2f(230, 100));
+    start.background.setPosition(5, 5);
     BackGround.makeBackground(240);
     player.makePlayer(playerskin);
     cPlayer.makePlayer(cplayerskin);
     floor.makeFloor(120);
-    OBS.makeObs(-240,-130);
-    TopObs.makeTopObs(-340,0);
+    OBS.makeObs(-240, -130);
+    TopObs.makeTopObs(-340, 0);
     bool startW = false;
+    bool deathscreen = false;
+
+    //score counter
+    double n = 0;
+    Text t;
+    Font font;
+    font.loadFromFile("font.ttf");
+    t.setFont(font);
+    t.setPosition(Vector2f(160,0));
 
 
-    while(game.isRunning())
+    //Game Loop
+    while (game.isRunning())
     {
+        //event handler
         game.events();
-
-        if(startW == false)
+        
+        // Into Screen
+        if (startW == false)
         {
+
             while(startW == false)
             {
                 game.events();
@@ -223,70 +246,27 @@ int main()
 
                     }
             }
+
+            intro.setPlayingOffset(seconds(15.0f));
+            dead.stop();
+            intro.play();
+            startScreen(startW, game, player, playerskin, cPlayer, cplayerskin, start, nojump, BackGround, OBS, TopObs, floor, skinmenu);
+
         }
-            player.makePlayer(playerskin);
-            cPlayer.makePlayer(cplayerskin);
-            
-            floor.moveFloor(120);
-            BackGround.moveBackground();
-            player.jump(-70,10,10, 1, nojump);
-            game.draw(BackGround.background);
-            game.draw(BackGround.background2);
-        
-
-       if(Keyboard::isKeyPressed(Keyboard::Key::Down))
-       {   
-            
-            game.draw(cPlayer.Player);
-            crouch = true;
-
-       }
-       if(!Keyboard::isKeyPressed(Keyboard::Key::Down))
-       {
-           
-            game.draw(player.Player);
-            crouch = false;
-            
-       }
-        game.draw(OBS.obs);
-        game.draw(TopObs.obs);  
-        OBS.moveObs(10);
-        TopObs.moveObs(10);
-        game.draw(floor.one);
-        game.draw(floor.two);
-        game.draw(floor.three);
-        game.display();
-        if((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false))
+        // Game Loop Screen
+        if (startW == true && deathscreen == false){
+            intro.stop();
+            ingame.play();
+            gameScreen(startW, deathscreen, game, player, playerskin, cPlayer, cplayerskin, floor, BackGround, nojump, crouch, OBS, TopObs,n,t);
+        }
+        // Death Screen
+        if (deathscreen)
         {
-
-            while(!Keyboard::isKeyPressed(Keyboard::Key::R))
-            {
-                game.events();
-
-                RectangleShape Gameover;
-                Texture over;
-
-                over.loadFromFile("sprites/gameover.png");
-                Gameover.setTexture(&over);
-                //Gameover.setFillColor(Color::Red);
-                Gameover.setSize(Vector2f(240,200));
-                Gameover.setOrigin(0,0);
-
-                //Window.clear();
-                game.clear();
-                //Window.draw(Gameover);
-                game.draw(Gameover);
-                //Window.display();
-                game.display();
-            }
-            startW = false;
+            ingame.stop();
+            dead.setPlayingOffset(seconds(25.3f));
+            dead.play();
+            deathScreen(deathscreen, game, startW);
         }
-        usleep(55000);
     }
     return 0;
 }
-
-
-
-
-

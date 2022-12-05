@@ -8,6 +8,7 @@ void Game::events(){
     while(window.pollEvent(e)){
         if (e.type == e.Closed){
             window.close();
+            exit(0);
         }
     }
 }
@@ -42,4 +43,8 @@ void Game::draw(RectangleShape &s){
 
 void Game::clear(){
     window.clear();
+}
+
+void Game::draw(Text &t){
+    window.draw(t);
 }
