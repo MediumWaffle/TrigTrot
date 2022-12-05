@@ -200,10 +200,22 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
             game.draw(player.Player);
             crouch = false;
         }
-        game.draw(OBS.obs);
-        game.draw(TopObs.obs);
+        
         OBS.moveObs(10);
         TopObs.moveObs(10);
+        if((TopObs.obsx >= OBS.obsx and TopObs.obsx < OBS.obsx+20))
+        {
+            TopObs.obsx = (OBS.obsx+40);
+            TopObs.obs.setOrigin(TopObs.obsx,TopObs.obsy);
+        }
+        if(TopObs.obsx <= OBS.obsx and TopObs.obsx > OBS.obsx-20)
+        {
+            TopObs.obsx = (OBS.obsx-40);
+            TopObs.obs.setOrigin(TopObs.obsx,TopObs.obsy);
+        }
+        game.draw(OBS.obs);
+        game.draw(TopObs.obs);
+        
         game.draw(floor.one);
         game.draw(floor.two);
         game.draw(floor.three);
