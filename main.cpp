@@ -100,7 +100,7 @@ int main()
                 floor.moveFloor(120);
                 BackGround.moveBackground(); 
                 OBS.moveObs(10);
-                TopObs.moveObs(10);
+                TopObs.moveObs(5);
     
                 //Window.draw(start.background);
                 game.draw(start.background);
