@@ -73,7 +73,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
 {
      
      
-     if(Keyboard::isKeyPressed(Keyboard::Key::Up) and playerY <= height and nojump == true)
+     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY <= height and nojump == true)
         {
           
                playerY += rises;
@@ -84,7 +84,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
                }
           
         }
-        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Up)))
+        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space)))
         {
             playerY -= falls;
 
@@ -145,8 +145,10 @@ void Objects::makeTopObs(int x, int y)
 
 void Objects::moveObs(int speed)
 {
+     /*
      srand(time(NULL));
      int r = rand();
+     */
      obsx += speed;
      obs.setOrigin(obsx,obsy);
      if(obsx > 20 and top == false)
