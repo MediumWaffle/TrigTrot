@@ -190,12 +190,12 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(BackGround.background);
         game.draw(BackGround.background2);
 
-        if (Keyboard::isKeyPressed(Keyboard::Key::Down))
+        if (Keyboard::isKeyPressed(Keyboard::Key::RShift))
         {
             game.draw(cPlayer.Player);
             crouch = true;
         }
-        if (!Keyboard::isKeyPressed(Keyboard::Key::Down))
+        if (!Keyboard::isKeyPressed(Keyboard::Key::RShift))
         {
             game.draw(player.Player);
             crouch = false;
