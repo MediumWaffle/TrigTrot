@@ -1,13 +1,21 @@
 # MalAarCal - Trig Trot
 
-Our project is to make an infinite size scrolling platformer.  
-This is a type of game where the main character, is on a 2D plane.  
-And they walk around on a solid block and dodge objects in 2D space.  
-Think of Mario bros.  
-Our game will be replicating the infitite generating aspect of flappy bird and the similar game mechanics of geometry dash.  
-![GeometryDash][GD]
-![FlappyBird][FB]
+<!--Partners and contribution-->
+## Malik Robinson, Aaron Jarnes, and Caleb Carter
+### Contribution:
+* Malik - Made the game loop, implimented the logic for a moving player. Made the Objects class. Fixed bugs where spikes dont spawn correctly. 
+* Aaron - Managed workflow. Made character sprites and crouching sprites. Implimented audio for the game. 3 songs [intro](https://www.youtube.com/watch?v=EpWHqdy6Tug), [play](https://www.youtube.com/watch?v=Pb6KyewC_Vg), [dead](https://www.youtube.com/watch?v=hdflkAQ3Qv0). Made the Game class. 
+* Caleb - Sprite manager. Made most of the sprites using [piskel](www.piskelapp.com). Added a timer for a score that counts up for the time spent in game.
+<!--How to download, compile, and run the game-->
+<!--How to play-->
+<!--Where to find the music used in here-->
+<!--Screen Shots and explaining-->
+![StartScreen][StS]
+![SkinScreen][SkS]
+![GameScreen][GS]
+![DeathScreen][DS]
 
-
-[GD]: https://cdn.akamai.steamstatic.com/steam/apps/322170/capsule_616x353.jpg?t=1624472273
-[FB]: https://images.macrumors.com/t/_ph9sBcjNjsHbqla8I7tiy_f1-E=/1600x1200/smart/article-new/2014/02/flappy-bird.jpg
+[StS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470906411536424/Screen_Shot_2022-12-05_at_3.38.18_PM.png
+[SkS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470906742882485/Screen_Shot_2022-12-05_at_3.38.26_PM.png
+[GS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470907116159106/Screen_Shot_2022-12-05_at_3.38.53_PM.png
+[DS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470907422363819/Screen_Shot_2022-12-05_at_3.39.00_PM.png
