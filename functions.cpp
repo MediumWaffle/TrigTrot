@@ -243,6 +243,7 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
     int move = 240;
     while (startW == true && deathscreen == false)
     {
+        double speed = 55000;
         game.events();
 
         Text tutorial;
@@ -309,7 +310,8 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(tutorial);
         move -= 5;
         game.display();
-        usleep(55000);
+        speed -= (n*150);
+        usleep(speed);
         n += .06;
         if (((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false)) and (player.invis == false))
         {
