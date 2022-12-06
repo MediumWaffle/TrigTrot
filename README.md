@@ -85,11 +85,11 @@ g++ *.cpp -o TrigTrot -lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio
   
 ### Personal High Scores
 1. Caleb - 131.46  
-2. Aaron - 47.00  
-3. Malik - 0.00  
+2. Aaron - 97.44  
+3. Malik - 65.32  
 
 
-[StS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470906411536424/Screen_Shot_2022-12-05_at_3.38.18_PM.png
-[SkS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470906742882485/Screen_Shot_2022-12-05_at_3.38.26_PM.png
-[GS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470907116159106/Screen_Shot_2022-12-05_at_3.38.53_PM.png
-[DS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470907422363819/Screen_Shot_2022-12-05_at_3.39.00_PM.png
+[StS]: https://cdn.discordapp.com/attachments/882030604437323827/1049812840292286484/Screenshot_20221206_022108.png
+[SkS]: https://cdn.discordapp.com/attachments/882030604437323827/1049812210773401610/Screenshot_20221206_021455.png
+[GS]: https://cdn.discordapp.com/attachments/882030604437323827/1049812211851337869/Screenshot_20221206_021626.png
+[DS]: https://cdn.discordapp.com/attachments/882030604437323827/1049812212497264731/Screenshot_20221206_021647.png
