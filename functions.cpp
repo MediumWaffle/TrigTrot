@@ -16,39 +16,46 @@ void startScreen(bool &startW, Game &game, Objects &player, string &playerskin, 
         cPlayer.makePlayer(cplayerskin);
 
         RectangleShape Gamestart;
-        RectangleShape Start;
-        RectangleShape Skins;
-        Texture tstart;
-        Texture skin;
         Texture startg;
-        skin.loadFromFile("sprites/skins.png");
-        tstart.loadFromFile("sprites/start.png");
+        Text enterStart;
+        Text sSkins;
+        Font textFont;
+        textFont.loadFromFile("font.ttf");
+        enterStart.setFont(textFont);
+        enterStart.setString("Press 'Enter' to start");
+        enterStart.setScale(.5,.5);
+        enterStart.setPosition(15,150);
+        sSkins.setFont(textFont);
+        sSkins.setString("Press 'S' for Skins");
+        sSkins.setScale(.5,.5);
+        sSkins.setPosition(35,170);
+        //skin.loadFromFile("sprites/skins.png");
+        //tstart.loadFromFile("sprites/start.png");
         startg.loadFromFile("sprites/welcome.png");
         Gamestart.setFillColor(Color::Blue);
         Gamestart.setTexture(&startg);
-        Start.setTexture(&tstart);
-        Skins.setTexture(&skin);
+        //Start.setTexture(&tstart);
+        //Skins.setTexture(&skin);
         start.background.setTexture(&startg);
         Gamestart.setSize(Vector2f(240, 200));
-        Start.setSize(Vector2f(100, 50));
-        Skins.setSize(Vector2f(100, 50));
+        //Start.setSize(Vector2f(100, 50));
+        //Skins.setSize(Vector2f(100, 50));
         Gamestart.setOrigin(0, 0);
-        Start.setOrigin(-10, -150);
-        Skins.setOrigin(-130, -150);
+        //Start.setOrigin(-10, -150);
+        //Skins.setOrigin(-130, -150);
         game.clear();
         game.draw(Gamestart);
         player.jump(-70, 10, 10, 1, nojump);
         game.draw(BackGround.background);
         game.draw(BackGround.background2);
         game.draw(player.Player);
-
         game.draw(OBS.obs);
         game.draw(TopObs.obs);
         game.draw(floor.one);
         game.draw(floor.two);
         game.draw(floor.three);
-        game.draw(Start);
-        game.draw(Skins);
+        game.draw(enterStart);
+        game.draw(sSkins);
         floor.moveFloor(120);
         BackGround.moveBackground();
         OBS.moveObs(10);
@@ -77,6 +84,21 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
         game.clear();
         RectangleShape b, s, p;
         Texture ts, csbg, pt;
+        Font tFont;
+        tFont.loadFromFile("font.ttf");
+        Text skinSelect;
+        Text goBack;
+
+        goBack.setFont(tFont);
+        goBack.setString("Press 'B'\nto go back");
+        goBack.setScale(.35,.4);
+        goBack.setPosition(14,17);
+
+        skinSelect.setFont(tFont);
+        skinSelect.setString(" 1 - 6 to\nPick Skin");
+        skinSelect.setScale(.4,.4);
+        skinSelect.setPosition(12,140);
+
         player.makePlayer(playerskin);
         player.Player.setOrigin(-10, -50);
         player.Player.setSize(Vector2f(70, 70));
@@ -132,6 +154,8 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
         p.setTexture(&pt);
         game.draw(s);
         game.draw(p);
+        game.draw(goBack);
+        game.draw(skinSelect);
         game.display();
 
         if (Keyboard::isKeyPressed(Keyboard::Key::B))
@@ -237,12 +261,20 @@ void deathScreen(bool &deathscreen, Game &game, bool &startW, double& n, Text t)
 
         RectangleShape Gameover;
         Texture over;
+        Text gOver;
+        Font tFont;
+        tFont.loadFromFile("font.ttf");
+
+        gOver.setFont(tFont);
+        gOver.setString("Press 'R'\nto Restart");
+        gOver.setScale(.3,.3);
+        gOver.setPosition(6,90);
 
         std::stringstream s;
         s << n;
         string str = s.str();
         t.setString("Score: "+str);
-        t.setPosition({20, 160});
+        t.setPosition(Vector2f(20, 160));
         t.setFillColor(Color::Red);
 
         over.loadFromFile("sprites/gameover.png");
@@ -253,6 +285,7 @@ void deathScreen(bool &deathscreen, Game &game, bool &startW, double& n, Text t)
         game.clear();
         game.draw(Gameover);
         game.draw(t);
+        game.draw(gOver);
         game.display();
     }
     deathscreen = false;
