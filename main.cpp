@@ -87,7 +87,7 @@ int main()
             ingame.stop();
             dead.setPlayingOffset(seconds(25.3f));
             dead.play();
-            deathScreen(deathscreen, game, startW);
+            deathScreen(deathscreen, game, startW, n, t);
         }
     }
     return 0;

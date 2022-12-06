@@ -173,7 +173,7 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
     }
 }
 
-void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump, bool &crouch, Objects &OBS, Objects &TopObs, double n, Text &t){
+void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump, bool &crouch, Objects &OBS, Objects &TopObs, double &n, Text t){
     while (startW == true && deathscreen == false)
     {
         game.events();
@@ -240,13 +240,20 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
     }
 }
 
-void deathScreen(bool &deathscreen, Game &game, bool &startW){
+void deathScreen(bool &deathscreen, Game &game, bool &startW, double& n, Text t){
     while (!Keyboard::isKeyPressed(Keyboard::Key::R))
     {
         game.events();
 
         RectangleShape Gameover;
         Texture over;
+
+        std::stringstream s;
+        s << n;
+        string str = s.str();
+        t.setString("Score: "+str);
+        t.setPosition({20, 160});
+        t.setFillColor(Color::Red);
 
         over.loadFromFile("sprites/gameover.png");
         Gameover.setTexture(&over);
@@ -255,6 +262,7 @@ void deathScreen(bool &deathscreen, Game &game, bool &startW){
 
         game.clear();
         game.draw(Gameover);
+        game.draw(t);
         game.display();
     }
     deathscreen = false;
