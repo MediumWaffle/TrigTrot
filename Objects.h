@@ -38,6 +38,7 @@ class Objects
     int floor1, floor2, floor3;
     int backx, backx2;
     bool top = false;
+    bool invis = true;
 
    RectangleShape one, two, three;
    RectangleShape background, background2;

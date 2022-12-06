@@ -78,6 +78,7 @@ int main()
         if (startW == true && deathscreen == false){
             intro.stop();
             ingame.play();
+            n = 0.00;
             gameScreen(startW, deathscreen, game, player, playerskin, cPlayer, cplayerskin, floor, BackGround, nojump, crouch, OBS, TopObs,n,t);
         }
         // Death Screen
