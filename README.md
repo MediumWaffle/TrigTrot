@@ -26,22 +26,22 @@
   
 <!--How to download, compile, and run the game-->
 ### How to run the game
-1. Open the (Ubuntu)[https://ubuntu.com/] terminal
+1. Open the [Ubuntu](https://ubuntu.com/) terminal
 2. Update the terminal
 ```
 sudo apt-get update && sudo apt-get upgrade -y
 ```
 3. Install the GNU compiler tools
 ```
-sudo apt install build-essential gdb
+sudo apt-get install build-essential gdb
 ```
 4. Install git
 ```
-sudo apt install git
+sudo apt-get install git
 ```
 5. Install SFML
 ```
-sudo install libsfml-dev
+sudo apt-get install libsfml-dev
 ```
 6. Clone our repository
 ```
@@ -69,6 +69,25 @@ g++ *.cpp -o TrigTrot -lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio
 ![GameScreen][GS]  
 ## If you run into a spike, the game over screen will show your end score.  
 ![DeathScreen][DS]  
+  
+<!--What we would improve on-->
+### What would we improve on?
+* Malik:  
+  * I would have the game over by checking the Rectangle boundrays instead of the x positions. This would have given up more freedom to move the obstacles.  
+  * I would also like to have improved the jump to check for more conditions to prevent double jumping and flying.  
+  * I would have liked to add more obstacles and some power ups and movement options.  
+* Aaron:  
+  * Some of the music doesn't line up with the bpm. I would have made the music a little more similar, and tried to add in transitions between songs to make it seem seamless. 
+  * If I had more time, I would've made a death screen for every character skin instead of just the default
+* Caleb:  
+  * I want to learn more about art and work on my visual assets
+  * I would like to learn more about SFML and work on my skills
+  
+### Personal High Scores
+1. Caleb - 131.46  
+2. Aaron - 47.00  
+3. Malik - 0.00  
+
 
 [StS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470906411536424/Screen_Shot_2022-12-05_at_3.38.18_PM.png
 [SkS]: https://cdn.discordapp.com/attachments/882030604437323827/1049470906742882485/Screen_Shot_2022-12-05_at_3.38.26_PM.png
