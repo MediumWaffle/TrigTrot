@@ -90,6 +90,42 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
         tFont.loadFromFile("font.ttf");
         Text skinSelect;
         Text goBack;
+        Text skin1;
+        Text skin2;
+        Text skin3;
+        Text skin4;
+        Text skin5;
+        Text skin6;
+
+        skin1.setFont(tFont);
+        skin1.setString("1) Default");
+        skin1.setScale(.2,.2);
+        skin1.setPosition(90,48);
+
+        skin2.setFont(tFont);
+        skin2.setString("2) Psycho");
+        skin2.setScale(.2,.2);
+        skin2.setPosition(163,48);
+
+        skin3.setFont(tFont);
+        skin3.setString("3) Piggy");
+        skin3.setScale(.2,.2);
+        skin3.setPosition(95,118);
+
+        skin4.setFont(tFont);
+        skin4.setString("4) Ghost");
+        skin4.setScale(.2,.2);
+        skin4.setPosition(163,118);
+
+        skin5.setFont(tFont);
+        skin5.setString("5) Steve");
+        skin5.setScale(.2,.2);
+        skin5.setPosition(93,188);
+
+        skin6.setFont(tFont);
+        skin6.setString("6) Spiderman");
+        skin6.setScale(.2,.2);
+        skin6.setPosition(158,188);
 
         goBack.setFont(tFont);
         goBack.setString("Press 'B'\nto go back");
@@ -158,6 +194,12 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
         game.draw(p);
         game.draw(goBack);
         game.draw(skinSelect);
+        game.draw(skin1);
+        game.draw(skin2);
+        game.draw(skin3);
+        game.draw(skin4);
+        game.draw(skin5);
+        game.draw(skin6);
         game.display();
 
         if (Keyboard::isKeyPressed(Keyboard::Key::B))
@@ -198,9 +240,19 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
 }
 
 void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump, bool &crouch, Objects &OBS, Objects &TopObs, double &n, Text t){
+    int move = 240;
     while (startW == true && deathscreen == false)
     {
         game.events();
+
+        Text tutorial;
+        Font tFont;
+        
+        tFont.loadFromFile("font.ttf");
+        tutorial.setFont(tFont);
+        tutorial.setString("Space to jump!\nShift to crouch!");
+        tutorial.setScale(.4,.4);
+        tutorial.setPosition(move,150);
 
         player.makePlayer(playerskin);
         cPlayer.makePlayer(cplayerskin);
@@ -209,7 +261,7 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         s << n;
         string str = s.str();
         t.setString(str);
-        if((n > 2.00))
+        if((n > 4.00))
         {
             player.invis = false;
         }
@@ -224,12 +276,12 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(BackGround.background);
         game.draw(BackGround.background2);
 
-        if (Keyboard::isKeyPressed(Keyboard::Key::RShift))
+        if (Keyboard::isKeyPressed(Keyboard::Key::RShift) || Keyboard::isKeyPressed(Keyboard::Key::LShift)) 
         {
             game.draw(cPlayer.Player);
             crouch = true;
         }
-        if (!Keyboard::isKeyPressed(Keyboard::Key::RShift))
+        if (!Keyboard::isKeyPressed(Keyboard::Key::RShift) && !Keyboard::isKeyPressed(Keyboard::Key::LShift))
         {
             game.draw(player.Player);
             crouch = false;
@@ -239,7 +291,7 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         TopObs.moveObs(10);
         if((TopObs.obsx >= OBS.obsx and TopObs.obsx < OBS.obsx+20))
         {
-            TopObs.obsx = (OBS.obsx+40);
+            TopObs.obsx =  (OBS.obsx+40);
             TopObs.obs.setOrigin(TopObs.obsx,TopObs.obsy);
         }
         if(TopObs.obsx <= OBS.obsx and TopObs.obsx > OBS.obsx-20)
@@ -254,6 +306,8 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(floor.two);
         game.draw(floor.three);
         game.draw(t);
+        game.draw(tutorial);
+        move -= 5;
         game.display();
         usleep(55000);
         n += .06;
