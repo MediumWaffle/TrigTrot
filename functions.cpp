@@ -291,7 +291,7 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         TopObs.moveObs(10);
         if((TopObs.obsx >= OBS.obsx and TopObs.obsx < OBS.obsx+20))
         {
-            TopObs.obsx = (OBS.obsx+40);
+            TopObs.obsx =  (OBS.obsx+40);
             TopObs.obs.setOrigin(TopObs.obsx,TopObs.obsy);
         }
         if(TopObs.obsx <= OBS.obsx and TopObs.obsx > OBS.obsx-20)
