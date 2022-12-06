@@ -176,6 +176,7 @@ void skinScreen(bool &skinmenu, Objects &player, Game &game, string &playerskin,
 void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, string &playerskin, Objects &cPlayer, string &cplayerskin, Objects &floor, Objects &BackGround, bool &nojump, bool &crouch, Objects &OBS, Objects &TopObs, double &n, Text t){
     while (startW == true && deathscreen == false)
     {
+        double speed = 55000;
         game.events();
 
         player.makePlayer(playerskin);
@@ -231,7 +232,8 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(floor.three);
         game.draw(t);
         game.display();
-        usleep(55000);
+        speed -= (n*150);
+        usleep(speed);
         n += .06;
         if (((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false)) and (player.invis == false))
         {
