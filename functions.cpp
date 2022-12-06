@@ -15,6 +15,8 @@ void startScreen(bool &startW, Game &game, Objects &player, string &playerskin, 
         player.makePlayer(playerskin);
         cPlayer.makePlayer(cplayerskin);
 
+        player.invis = true;
+
         RectangleShape Gamestart;
         RectangleShape Start;
         RectangleShape Skins;
@@ -183,6 +185,14 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         s << n;
         string str = s.str();
         t.setString(str);
+        if((n > 2.00))
+        {
+            player.invis = false;
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Key::I))
+        {
+            player.invis = true;
+        }
 
         floor.moveFloor(120);
         BackGround.moveBackground();
@@ -222,8 +232,8 @@ void gameScreen(bool &startW, bool &deathscreen, Game &game, Objects &player, st
         game.draw(t);
         game.display();
         usleep(55000);
-        n += .01;
-        if ((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false))
+        n += .06;
+        if (((player.playerX == OBS.obsx and player.playerY < -100) or (player.playerX == TopObs.obsx and crouch == false)) and (player.invis == false))
         {
             deathscreen = true;
         }
