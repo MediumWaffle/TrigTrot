@@ -8,7 +8,11 @@
 #include "header.h"
 //#include "Objects.h"
 
-//sets the rectengles used for the floor to the right texture the s is for size
+/**
+ * @brief Initilizes the floor, loads in the .png files and sets size and posistion
+ * @param s sets lengh of floor all must be the same
+ * @author Malik Robinson
+ */
 void Objects::makeFloor(int s)
 {
      
@@ -37,7 +41,12 @@ void Objects::makeFloor(int s)
     three.setOrigin(floor3,-150);
 
 }
-//moves the floor s is the offset it should be the same as the size of the blocks
+/**
+ * @brief Moves all 3 floor objects in synce 
+ * 
+ * @param s the lenght of the floor objects
+ * @author Malik Robinson
+ */
 void Objects::moveFloor(int s)
 {
      if(floor1 > s)
@@ -68,12 +77,21 @@ void Objects::moveFloor(int s)
         floor3 += 10;
 
 }
-//the function that controls the jump logic the height of the jump as well as the speed going up and down can be controlled
+/**
+ * @brief Controlls the jumping logic and checks player position 
+ * 
+ * @param height how high the player can jump
+ * @param falls how fast the player falls 
+ * @param rises how fast the player rises
+ * @param plat tracks plattform if one is used
+ * @param nojump tracks if the player has already jumped so there can not be flying
+ * @author Malik Robinson
+ */
 void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
 {
      
      
-     if(Keyboard::isKeyPressed(Keyboard::Key::Up) and playerY <= height and nojump == true)
+     if(Keyboard::isKeyPressed(Keyboard::Key::Space) and playerY <= height and nojump == true)
         {
           
                playerY += rises;
@@ -84,7 +102,7 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
                }
           
         }
-        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Up)))
+        if((nojump == false) or (playerY > -120 and !Keyboard::isKeyPressed(Keyboard::Key::Space)))
         {
             playerY -= falls;
 
@@ -95,7 +113,12 @@ void Objects::jump(int height, int falls, int rises, int plat, bool &nojump)
             }
         }
 }
-//Makes and sets the player to defuault will need to be changed when skin select is done
+/**
+ * @brief initializes the player character, setting the size and position
+ * 
+ * @param t A .png file that gives the player character a skin
+ * @author Malik Robinson
+ */
 void Objects::makePlayer(std::string t)
 {
      
@@ -106,7 +129,12 @@ void Objects::makePlayer(std::string t)
      //player.setFillColor(Color(255,255,255));
      Player.setOrigin(playerX,playerY);
 }
-//sets the background this works fine just need to agree on the background texture
+/**
+ * @brief Initillizes the background, setting the .png file size and position 
+ * 
+ * @param s the size of the background
+ * @author Malik Robinson
+ */
 void Objects::makeBackground(int s)
 {
      background.setOrigin(backx,0);
@@ -117,7 +145,13 @@ void Objects::makeBackground(int s)
     background.setTexture(&back);
     background2.setTexture(&back);
 }
-
+/**
+ * @brief Initilizes the bottom Spike objects 
+ * 
+ * @param x set the initial x position
+ * @param y set the initial y position
+ * @author Malik Robinson
+ */
 void Objects::makeObs(int x, int y)
 {
      obsx = x;
@@ -129,7 +163,13 @@ void Objects::makeObs(int x, int y)
     top = false;
 
 }
-
+/**
+ * @brief Initilizes the top spike objects
+ * 
+ * @param x set the initial x position
+ * @param y set the initial y position
+ * @author Malik Robinson
+ */
 void Objects::makeTopObs(int x, int y)
 {
      obsx = x;
@@ -142,11 +182,18 @@ void Objects::makeTopObs(int x, int y)
 
 
 }
-
+/**
+ * @brief Moves the Spike objects accross the screen
+ * 
+ * @param speed speed the objects move
+ * @author Malik Robinson
+ */
 void Objects::moveObs(int speed)
 {
+     /*
      srand(time(NULL));
      int r = rand();
+     */
      obsx += speed;
      obs.setOrigin(obsx,obsy);
      if(obsx > 20 and top == false)
@@ -160,7 +207,11 @@ void Objects::moveObs(int speed)
      
 }
 
-//movess the background might change to make speed ajustable
+/**
+ * @brief Moves the Background 
+ * @author Malik Robinson
+ * 
+ */
 void Objects::moveBackground()
 {
      if(backx2 == 0)
